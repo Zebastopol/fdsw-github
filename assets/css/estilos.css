@@ -1,56 +1,245 @@
+:root {
+  /* Palette */
+  --bg-primary: #0f1218;
+  --bg-secondary: #1f2736;
+  --bg-tertiary: #2e344e;
+  --surface: #1e2430;
+  --text-main: #f0f3f7;
+  --text-muted: #aaaec3;
+  --border: #2e344e;
+
+  --accent-1: #5fa8d3;        /* cold blue */
+  --accent-2: #9f7aea;        /* mystical purple */
+  --accent-contrast: #ffffff;
+
+  --bg-info: var(--bg-tertiary);
+  --btn-bg: var(--accent-1);
+  --btn-text: #fff;
+  --btn-outline: var(--accent-1);
+  --radius: 12px;
+  --transition: .2s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Raleway", sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--bg-secondary) !important;
+  padding: .75rem 1rem;
+}
+.navbar .navbar-brand img {
+  max-height: 40px;
+}
+.navbar .nav-link {
+  color: var(--text-main);
+  transition: color var(--transition);
+}
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  color: var(--accent-1);
 }
 
 /* Hero Section */
-
 #Hero-Section {
+  position: relative;
   background-image: url("../img/bg-hero1.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: left;
-  
+  padding-top: 120px;
+  padding-bottom: 120px;
+  overflow: hidden;
 }
 
-/* Mis trabajos */
-
-#Mis-trabajos .image-top {
-  height: 250px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+#Hero-Section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 18, 24, 0.55);
+  backdrop-filter: blur(2px);
+  z-index: 0;
 }
 
-/* Contacto */
-
-#Contacto form label {
-  font-weight: 700;
-  color: #373a3c;
+#Hero-Section .container > div {
+  position: relative;
+  z-index: 1;
 }
 
-@media (max-width: 768px) {
-  #Contacto form label {
-    font-weight: 400;
-  }
-
-  .navbar-brand{
-    width: 100px;
-  }
-
-}
-.display-1 {
+h1, .display-1 {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 3rem;
-  margin-left: auto;
+  line-height: 1.05;
 }
+.display-1 p {
+  margin: 0;
+}
+
+/* Typography helpers */
 .display-3 {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 2rem;
 }
-.my-5 h2 {
-  font-size: 1.5rem;
+h2, h3, h5 {
+  color: var(--text-main);
   font-weight: 700;
-  margin-bottom: 1.5rem;
+}
+p {
+  line-height: 1.6;
+}
+
+/* Cards / Signature Expeditions */
+#Mis-trabajos {
+  background: none; /* remove default bootstrap bg-info */
+  padding: 3rem 2rem;
+}
+.bg-info {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-main);
+  transition: transform var(--transition), box-shadow var(--transition);
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(159, 122, 234, 0.25);
+}
+
+.card .card-title {
+  color: var(--accent-2);
+  margin-bottom: .75rem;
+}
+
+.card .btn-outline-info {
+  border-color: var(--btn-outline);
+  color: var(--btn-outline);
+  transition: all var(--transition);
+}
+
+.card .btn-outline-info:hover {
+  background-color: var(--btn-outline);
+  color: var(--accent-contrast);
+  border-color: var(--btn-outline);
+}
+
+/* Image tops for cards */
+.image-top {
+  height: 250px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+}
+
+/* Buttons */
+.btn-info {
+  background-color: var(--btn-bg);
+  border-color: var(--btn-bg);
+  color: var(--btn-text);
+  border-radius: 6px;
+  padding: .75rem 1.5rem;
+  font-weight: 600;
+  transition: background-color var(--transition), transform var(--transition);
+}
+.btn-info:hover {
+  background-color: var(--accent-2);
+  transform: translateY(-1px);
+}
+.btn-outline-info {
+  background: transparent;
+  color: var(--btn-outline);
+  border: 2px solid var(--btn-outline);
+  border-radius: 6px;
+  padding: .75rem 1.5rem;
+  font-weight: 600;
+  transition: all var(--transition);
+}
+.btn-outline-info:hover {
+  background-color: var(--btn-outline);
+  color: var(--accent-contrast);
+}
+
+/* About Me & Services */
+#Acerca-de-mi {
+  padding-top: 100px;
+  padding-bottom: 80px;
+}
+
+#Acerca-de-mi .row > div i {
+  color: var(--accent-1);
+}
+
+/* Contact */
+#Contacto {
+  padding-top: 60px;
+  padding-bottom: 80px;
+}
+#Contacto form label {
+  font-weight: 700;
+  color: var(--text-main);
+}
+#Contacto input,
+#Contacto textarea {
+  background-color: #1f2439;
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  border-radius: 6px;
+}
+#Contacto input::placeholder,
+#Contacto textarea::placeholder {
+  color: var(--text-muted);
+}
+#Contacto .btn-info {
+  width: auto;
+}
+
+/* Footer */
+footer {
+  background-color: var(--bg-secondary);
+  color: var(--text-main);
+  font-size: .9rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  #Contacto form label {
+    font-weight: 400;
+  }
+
+  .navbar-brand {
+    width: 100px;
+  }
+
+  .display-1 {
+    font-size: 2rem;
+  }
+  .display-3 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Utility overrides */
+.text-light {
+  color: var(--text-main) !important;
+}
+.bg-dark {
+  background-color: var(--bg-secondary) !important;
 }
